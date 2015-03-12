@@ -27,7 +27,13 @@ def get(path)
 end
 
 def get_value(item_id)
+  if !item_id then
+    puts "Missing entry."
+    return 0
+  end
+
   results = get("commerce/prices/#{item_id}")
+  #puts results
   Price.new(results["buys"]["unit_price"], results["sells"]["unit_price"])
 end
 
