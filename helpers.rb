@@ -15,7 +15,7 @@ class Price < Struct.new(:low, :high)
   end
 
   def to_s
-    "#{self.low} - #{self.high}"
+    "#{pretty_print self.low} - #{pretty_print self.high}"
   end
 
 end
@@ -31,3 +31,9 @@ def get_value(item_id)
   Price.new(results["buys"]["unit_price"], results["sells"]["unit_price"])
 end
 
+def pretty_print(total_copper)
+  copper = total_copper % 100
+  silver = (total_copper / 100) % 100
+  gold = total_copper / (100 * 100)
+  "#{gold}g #{silver}s #{copper}c"
+end
